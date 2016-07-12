@@ -40,7 +40,8 @@ module ActiveRecord
           #
           #   HomepageSettings.instance.update_attributes :welcome => "Hello!"
           def instance
-            first || create
+            return @instance if @instance.present?
+            @instance = first || create
           end
 
           def find(*)
